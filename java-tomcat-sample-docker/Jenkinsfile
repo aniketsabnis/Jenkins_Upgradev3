@@ -18,6 +18,10 @@ pipeline {
                 bat "docker build ./java-tomcat-sample-docker -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
-
+        stage('Start Tomcat Docker Image'){
+            steps {
+                bat "docker run -d -p 9090:8080 tomcatsamplewebapp:${env.BUILD_ID}"
+            }
+        }
     }
 }
